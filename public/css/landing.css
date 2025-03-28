@@ -1,0 +1,87 @@
+/* General Style */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fefefe;
+    color: #333;
+  }
+
+  /* Navbar */
+  .navbar {
+    padding: 10px 0;
+  }
+
+  .nav-link {
+    margin-right: 20px;
+    font-weight: 500;
+    color: #333 !important;
+  }
+
+  .nav-link:hover {
+    color: #0d6efd !important;
+  }
+
+  .dropdown-menu {
+    border-radius: 10px;
+  }
+
+  /* Hero Section */
+  .hero img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* About & Visi Section */
+
+  .about-section,
+.visi-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.about-img,
+.visi-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+  /* Contact Section */
+  .contact {
+    background-color: #f8f9fa;
+  }
+
+  .contact h2 {
+    color: #000000;
+  }
+
+  .contact p {
+    margin: 5px 0;
+  }
+
+  .contact img {
+    border-radius: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Footer */
+  footer {
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    color: #777;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .nav-link {
+      margin-right: 10px;
+    }
+
+    .contact img {
+      width: 100%;
+    }
+  }
