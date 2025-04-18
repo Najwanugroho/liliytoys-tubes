@@ -12,7 +12,7 @@
     <div class="login-container">
       <h2>Login</h2>
       <h3>Admin</h3>
-      <form action="/login/admin" method="POST">
+      <form action="/admin-home" method="GET">
         @csrf
         <div class="form-group">
           <label>Username</label>
@@ -22,7 +22,7 @@
           <label>Password</label>
           <input type="password" name="password" required>
         </div>
-        <button type="submit">Submit</button>
+        <a href="/admin-home"><button type="submit">Submit</button></a>
       </form>
     </div>
   </div>

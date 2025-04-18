@@ -12,7 +12,7 @@
     <div class="login-container">
       <h2>Login</h2>
       <h3>Karyawan</h3>
-      <form action="/login/karyawan" method="POST">
+      <form action="/karyawan-home" method="GET">
         @csrf
         <div class="form-group">
           <label>Username</label>
@@ -22,8 +22,8 @@
           <label>Password</label>
           <input type="password" name="password" required>
         </div>
-        <button type="submit">Submit</button>
-      </form>
+    </form>
+    <a href="/karyawan-home"><button type="submit">Submit</button></a>
     </div>
   </div>
 
