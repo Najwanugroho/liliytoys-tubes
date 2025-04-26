@@ -10,9 +10,32 @@
     <div class="container">
         <header class="header">
             <img src="{{ asset('images/Logo.png') }}" alt="Home" class="img-fluid rounded">
-            <div class="user-icon"><img src="{{ asset('images/User.png') }}" alt="Tambah"></div>
-        </header>
+            <div class="user-menu">
+                <button onclick="toggleDropdown()" class="user-icon">
+                    <img src="{{ asset('images/User.png') }}" alt="Profile">
+                </button>
+                <div id="dropdown" class="dropdown-menu hidden">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    <a href="#" onclick="event.preventDefault(); logoutAndRedirect();">
+                        Logout
+                    </a>
+                    <script>
+                        function logoutAndRedirect() {
+                            // Logout
+                            document.getElementById('logout-form').submit();
 
+                            // Redirect setelah logout
+                            window.location.href = "{{ url('landing') }}";
+                        }
+                    </script>
+
+
+
+                </div>
+            </div>
+        </header>
         <div class="welcome-banner">
             <h2>Selamat Datang <strong>{{ $username }}</strong></h2>
         </div>
@@ -33,10 +56,30 @@
         </div>
 
         <footer class="footer">
+            <a href="{{ url('#') }}">
             <button><img src="{{ asset('images/Tambah.png') }}" alt="Tambah"></button>
+            </a>
+            <a href="{{ url('/laporan-keuangan-harian') }}">
             <button><img src="{{ asset('images/Catatan.png') }}" alt="Catatan"></button>
+            </a>
+            <a href="{{ url('#') }}">
             <button><img src="{{ asset('images/Box.png') }}" alt="Box"></button>
         </footer>
     </div>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        window.addEventListener('click', function (e) {
+            const button = document.querySelector('.user-icon');
+            const dropdown = document.getElementById('dropdown');
+            if (!button.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 </html>
