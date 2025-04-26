@@ -1,0 +1,70 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f4ef;
+  }
+
+  .background {
+    background-image: url('/images/bg-login.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .login-container h3{
+    font-weight: lighter;
+    font-style: italic;
+    font-size: small;
+  }
+
+  .login-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 350px;
+  }
+
+  .login-container h2 {
+    margin-bottom: 20px;
+    color: #3c1e1e;
+    font-weight: bold;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #3c1e1e;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 25px;
+  }
+
+  button {
+    background-color: #efd8c7;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 20px;
+    color: #3c1e1e;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #e5caba;
+  }
