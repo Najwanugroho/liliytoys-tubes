@@ -35,7 +35,9 @@
         <footer class="footer">
             <button><img src="{{ asset('images/Tambah.png') }}" alt="Tambah"></button>
             <button><img src="{{ asset('images/Catatan.png') }}" alt="Catatan"></button>
-            <button><img src="{{ asset('images/Box.png') }}" alt="Box"></button>
+            <a href="{{ url('/inventaris-admin') }}">
+                <button><img src="{{ asset('images/Box.png') }}" alt="Box"></button>
+            </a>
         </footer>
     </div>
 </body>

@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Karyawan extends Model
+
+class Karyawan extends Authenticatable
 {
     use HasFactory;
+
+    protected $table = 'karyawans';
 
     protected $fillable = [
         'username',
@@ -16,4 +20,6 @@ class Karyawan extends Model
         'no_telp',
         'password',
     ];
+    
+    protected $hidden = ['password'];
 }
