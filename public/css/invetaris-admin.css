@@ -1,0 +1,160 @@
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #d3eeed;
+}
+
+/* Header */
+.header {
+    background-color: #8dd1d1;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-button img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 5px;
+    transition: transform 0.2s;
+}
+
+.back-button:hover img {
+    transform: scale(1.1);
+}
+
+
+.logo {
+    height: 50px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-icon {
+    height: 30px;
+}
+
+/* Navigasi Kategori */
+.category-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #8dd1d1;
+    padding: 10px 20px;
+}
+.tabs {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.category-nav button {
+    background-color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.category-nav .active {
+    background-color: #e0f0ef;
+    font-weight: bold;
+}
+.category-nav .add-btn {
+    background-color: #ffffff;
+    color: #4bb5ac;
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 23px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+    margin-left: 1rem; /* spasi dari tombol kategori */
+}
+
+.category-nav .add-btn:hover {
+    background-color: #d8f5f3;
+    transform: scale(1.05);
+}
+
+
+
+/* Tabel */
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.inventory-table th, .inventory-table td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: center;
+}
+
+.inventory-table thead th {
+    background-color: #e0f0ef;
+}
+
+.inventory-table tbody tr:nth-child(even) {
+    background-color: #edf7f4;
+}
+
+/* Tombol Kontrol + / - */
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+button.rounded {
+    border: none;
+    background-color: #ccc;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button.rounded:hover {
+    background-color: #aaa;
+}
+
+/* Total */
+.total {
+    text-align: right;
+    padding: 20px 30px;
+    background-color: #eaf4f4;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Tombol Tambah Data */
+.add-btn {
+    margin: 20px auto;
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #8dd1d1;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}

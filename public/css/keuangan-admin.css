@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #d3eeed;
+}
+.back-button img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 5px;
+    transition: transform 0.2s;
+}
+
+.back-button:hover img {
+    transform: scale(1.1);
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #8cd1d1;
+    padding: 15px 30px;
+}
+
+.logo {
+    height: 50px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #000;
+}
+
+.user-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.search-bar {
+    background-color: #8cd1d1;
+    padding: 20px 30px 10px;
+}
+
+.search-bar input {
+    width: 300px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.filter {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #8cd1d1;
+    padding: 0 30px 20px;
+}
+
+.filter label {
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.filter select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #aaa;
+    font-size: 1rem;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.report-table thead {
+    background-color: #e0ecec;
+}
+
+.report-table th, .report-table td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.report-table tbody tr:nth-child(even) {
+    background-color: #eaf4f4;
+}
+
+.total {
+    text-align: right;
+    padding: 20px 30px;
+    background-color: #eaf4f4;
+    font-size: 1.2rem;
+    font-weight: bold;
+}

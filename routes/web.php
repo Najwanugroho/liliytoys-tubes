@@ -2,19 +2,45 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KeuanganController;
+use App\Http\Controllers\InventarisAdminController;
+use App\Http\Controllers\RegisterKaryawanController;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/register-karyawan', [RegisterKaryawanController::class, 'showForm'])->name('register.karyawan');
+Route::post('/register-karyawan', [RegisterKaryawanController::class, 'store'])->name('register.karyawan.store');
+
+
+Route::get('/karyawan-home', [KaryawanController::class, 'index'])->name('karyawan.home');
+Route::match(['get', 'post'], '/karyawan-home', [KaryawanController::class, 'index']);
+
+Route::get('auth/karyawan-login', [KaryawanController::class, 'showLoginForm'])->name('karyawan.login');
+
+Route::post('auth/karyawan-login', [KaryawanController::class, 'login'])->name('karyawan.login.post');
+
+
+Route::get('/admin-home', [AdminController::class, 'index'])->name('admin.home');
+Route::match(['get', 'post'], '/admin-home', [AdminController::class, 'index']);
+
+Route::get('auth/admin-login', function () {
+    return view('auth.admin-login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('inventaris-admin', [InventarisAdminController::class, 'index']);
+
+Route::get('/keuangan-admin', [KeuanganController::class, 'index']);
+
+
+Route::get('/', function () {
+    return view('landing');
+})->name('landing');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 require __DIR__.'/auth.php';
