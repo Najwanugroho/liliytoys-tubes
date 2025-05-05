@@ -11,7 +11,31 @@
     <div class="container">
         <header class="header">
             <img src="{{ asset('images/Logo.png') }}" alt="Home" class="img-fluid rounded">
-            <div class="user-icon"><img src="{{ asset('images/User.png') }}" alt="Tambah"></div>
+            <div class="user-menu">
+                <button onclick="toggleDropdown()" class="user-icon">
+                    <img src="{{ asset('images/User.png') }}" alt="Profile">
+                </button>
+                <div id="dropdown" class="dropdown-menu hidden">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    <a href="#" onclick="event.preventDefault(); logoutAndRedirect();">
+                        Logout
+                    </a>
+                    <script>
+                        function logoutAndRedirect() {
+                            // Logout
+                            document.getElementById('logout-form').submit();
+
+                            // Redirect setelah logout
+                            window.location.href = "{{ url('landing') }}";
+                        }
+                    </script>
+
+
+
+                </div>
+            </div>
         </header>
 
         <div class="welcome-banner">
@@ -21,7 +45,7 @@
         <section class="employee-section">
             <h2>Karyawan:</h2>
             <a href="{{ url('/register-karyawan') }}">
-            <button class="add-employee">+ Add Employee</button>
+                <button class="add-employee">+ Add Employee</button>
             </a>
             <ul class="employee-list">
                 @forelse ($karyawans as $karyawan)
@@ -39,9 +63,26 @@
                 </button>
             </a>
             <a href="{{ url('/inventaris-admin') }}">
-            <button><img src="{{ asset('images/Box.png') }}" alt="Box"></button>
+                <button>
+                    <img src="{{ asset('images/Box.png') }}" alt="Box">
+                </button>
             </a>
         </nav>
     </div>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        window.addEventListener('click', function (e) {
+            const button = document.querySelector('.user-icon');
+            const dropdown = document.getElementById('dropdown');
+            if (!button.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 </html>

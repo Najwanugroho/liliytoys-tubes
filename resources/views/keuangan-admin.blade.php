@@ -49,13 +49,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td>1.</td><td>User123</td><td>05/05/2025</td><td>07.30 - 15.30</td><td>Rp. 1.000.000</td></tr>
-                <tr><td>2.</td><td>User123</td><td>07/05/2025</td><td>07.30 - 15.30</td><td>Rp. 2.000.000</td></tr>
-                <tr><td>3.</td><td>User456</td><td>08/05/2025</td><td>07.30 - 15.30</td><td>Rp. 3.000.000</td></tr>
-                <tr><td>4.</td><td>User123</td><td>09/05/2025</td><td>07.30 - 15.30</td><td>Rp. 1.000.000</td></tr>
-                <tr><td>5.</td><td>User456</td><td>10/05/2025</td><td>07.30 - 15.30</td><td>Rp. 2.000.000</td></tr>
-                <tr><td>6.</td><td>User456</td><td>11/05/2025</td><td>07.30 - 15.30</td><td>Rp. 3.000.000</td></tr>
-                <tr><td>7.</td><td>User456</td><td>12/05/2025</td><td>07.30 - 15.30</td><td>Rp. 4.000.000</td></tr>
+                <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;"><td>1.</td><td>User123</td><td>05/05/2025</td><td>07.30 - 15.30</td><td>Rp. 1.000.000</td></tr>
+                <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;"><td>2.</td><td>User123</td><td>07/05/2025</td><td>07.30 - 15.30</td><td>Rp. 2.000.000</td></tr>
+                <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;"><td>3.</td><td>User456</td><td>08/05/2025</td><td>07.30 - 15.30</td><td>Rp. 3.000.000</td></tr>
+                <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;"><td>4.</td><td>User123</td><td>09/05/2025</td><td>07.30 - 15.30</td><td>Rp. 1.000.000</td></tr>
+                <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;"><td>5.</td><td>User456</td><td>10/05/2025</td><td>07.30 - 15.30</td><td>Rp. 2.000.000</td></tr>
+                <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;"><td>6.</td><td>User456</td><td>11/05/2025</td><td>07.30 - 15.30</td><td>Rp. 3.000.000</td></tr>
+                <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;"><td>6.</td><td>User456</td><td>11/05/2025</td><td>07.30 - 15.30</td><td>Rp. 3.000.000</td></tr>
+                <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;"><td>7.</td><td>User456</td><td>12/05/2025</td><td>07.30 - 15.30</td><td>Rp. 4.000.000</td></tr>
             </tbody>
         </table>
 

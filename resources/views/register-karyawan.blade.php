@@ -12,8 +12,12 @@
   <div class="background">
     <div class="register-container">
       <h2>Register</h2>
+<<<<<<< HEAD
 
       <form action="{{ route('register.karyawan.store') }}" method="POST">
+=======
+      <form action="{{ route('register-karyawan') }}" method="GET">
+>>>>>>> origin/najwa
         @csrf
 
         <div class="form-group">
@@ -58,6 +62,11 @@
             <span>{{ $message }}</span>
         @enderror
         </div>
+<<<<<<< HEAD
+=======
+
+        <button type="submit">Submit</button>
+>>>>>>> origin/najwa
 
         <button type="submit">Submit</button>
       </form>
