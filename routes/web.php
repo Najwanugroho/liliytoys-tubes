@@ -9,6 +9,7 @@ use App\Http\Controllers\InventarisAdminController;
 use App\Http\Controllers\RegisterKaryawanController;
 use App\Http\Controllers\LaporanController;
 
+
 Route::get('/laporan-keuangan-harian', [LaporanController::class, 'index']);
 
 
@@ -23,6 +24,9 @@ Route::post('/logout', function () {
     Auth::logout();
     return redirect('/landing');
 })->name('logout');
+
+
+Route::get('/catatan', [CatatanController::class, 'index'])->name('catatan');
 
 
 Route::get('/karyawan-home', [KaryawanController::class, 'index'])->name('karyawan.home');

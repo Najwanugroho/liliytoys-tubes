@@ -162,16 +162,21 @@ body {
   }
 
   /* STATUS COLORS */
-  .dropdown-status option[value="Lunas"] {
-    background-color: #d4f4d4;
-    color: #2c7a2c;
-    font-weight: 600;
+  .dropdown-status {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    cursor: pointer;
   }
 
-  .dropdown-status option[value="Belum"] {
-    background-color: #ffe0e0;
-    color: #b91c1c;
-    font-weight: 600;
+  .dropdown-status.lunas {
+    background-color: #4CAF50;
+  }
+
+  .dropdown-status.belum {
+    background-color: #f44336;
   }
 
   /* INCOME BOX */

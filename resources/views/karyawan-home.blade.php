@@ -56,7 +56,7 @@
         </div>
 
         <footer class="footer">
-            <a href="{{ url('#') }}">
+            <a href="{{ url('/catatan') }}">
             <button><img src="{{ asset('images/Tambah.png') }}" alt="Tambah"></button>
             </a>
             <a href="{{ url('/laporan-keuangan-harian') }}">

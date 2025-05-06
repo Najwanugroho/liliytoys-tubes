@@ -58,10 +58,15 @@
           <td>{{ $item['waktu'] }}</td>
           <td>{{ $item['harga'] }}</td>
           <td>
-            <select name="status_pembayaran" class="dropdown-status">
-              <option value="Lunas" {{ $item['status'] == 'Lunas' ? 'selected' : '' }}>Lunas</option>
-              <option value="Belum" {{ $item['status'] == 'Belum' ? 'selected' : '' }}>Belum</option>
-            </select>
+            <select
+            name="status_pembayaran"
+            class="dropdown-status {{ strtolower($item['status']) }}"
+            onchange="updateSelectStyle(this, {{ $item['id'] }})"
+          >
+            <option value="Lunas" {{ $item['status'] == 'Lunas' ? 'selected' : '' }}>Lunas</option>
+            <option value="Belum" {{ $item['status'] == 'Belum' ? 'selected' : '' }}>Belum</option>
+          </select>
+
           </td>
           <td></td>
         </tr>
@@ -72,6 +77,33 @@
     <div class="income-box">
       Pendapatan:<br>Rp {{ number_format($pendapatan, 0, ',', '.') }}
     </div>
+    <script>
+        function updateSelectStyle(select, id) {
+          const value = select.value.toLowerCase();
+
+          // Hapus class sebelumnya
+          select.classList.remove('lunas', 'belum');
+          select.classList.add(value);
+
+          // Optional: kirim update ke server
+          fetch("{{ route('catatan.updateStatus') }}", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ id: id, status: select.value })
+          }).then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.error(err));
+        }
+
+        // Untuk set class saat halaman pertama kali load
+        document.querySelectorAll('.dropdown-status').forEach(select => {
+          updateSelectStyle(select, select.dataset.id || 0);
+        });
+      </script>
+
   </main>
 </body>
 </html>
