@@ -12,7 +12,7 @@
     <div class="login-container">
       <h2>Login</h2>
       <h3>Admin</h3>
-      <form action="/admin-home" method="GET">
+      <form action="{{ route('admin.home') }}" method="POST">
         @csrf
         <div class="form-group">
           <label>Username</label>
@@ -22,7 +22,7 @@
           <label>Password</label>
           <input type="password" name="password" required>
         </div>
-        <a href="/admin-home"><button type="submit">Submit</button></a>
+        <button type="submit">Submit</button>
       </form>
     </div>
   </div>

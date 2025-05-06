@@ -10,6 +10,13 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KaryawanController;
+
+Route::middleware('guest:karyawan')->group(function () {
+    Route::get('karyawan/login', [KaryawanController::class, 'showLoginForm'])->name('karyawan.login');
+    Route::post('karyawan/login', [KaryawanController::class, 'login']);
+});
+
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])

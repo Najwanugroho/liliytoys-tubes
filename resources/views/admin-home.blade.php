@@ -48,10 +48,11 @@
                 <button class="add-employee">+ Add Employee</button>
             </a>
             <ul class="employee-list">
-                <li>User123 <i class="fas fa-ellipsis-v"></i></li>
-                <li>User456 <i class="fas fa-ellipsis-v"></i></li>
-                <li>User789 <i class="fas fa-ellipsis-v"></i></li>
-                <li>User891 <i class="fas fa-ellipsis-v"></i></li>
+                @forelse ($karyawans as $karyawan)
+                    <li>{{ $karyawan->username }} <i class="fas fa-ellipsis-v"></i></li>
+                @empty
+                    <li>Belum ada karyawan.</li>
+                @endforelse
             </ul>
         </section>
 

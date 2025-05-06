@@ -12,18 +12,20 @@
     <div class="login-container">
       <h2>Login</h2>
       <h3>Karyawan</h3>
-      <form action="/karyawan-home" method="GET">
+
+      <form action="{{ route('karyawan.login.post') }}" method="POST">
         @csrf
         <div class="form-group">
           <label>Username</label>
           <input type="text" name="username" required>
         </div>
+
         <div class="form-group">
           <label>Password</label>
           <input type="password" name="password" required>
         </div>
-    </form>
-    <a href="/karyawan-home"><button type="submit">Submit</button></a>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   </div>
 

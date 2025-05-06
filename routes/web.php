@@ -3,7 +3,6 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KaryawanController;
-use App\Http\Controllers\Auth\KaryawanLoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\InventarisAdminController;
@@ -26,15 +25,25 @@ Route::post('/logout', function () {
 })->name('logout');
 
 
-Route::get('inventaris-admin', [InventarisAdminController::class, 'index']);
+Route::get('/karyawan-home', [KaryawanController::class, 'index'])->name('karyawan.home');
+Route::match(['get', 'post'], '/karyawan-home', [KaryawanController::class, 'index']);
 
+Route::get('auth/karyawan-login', [KaryawanController::class, 'showLoginForm'])->name('karyawan.login');
 
-Route::get('/keuangan-admin', [KeuanganController::class, 'index']);
+Route::post('auth/karyawan-login', [KaryawanController::class, 'login'])->name('karyawan.login.post');
+
 
 Route::get('/admin-home', [AdminController::class, 'index'])->name('admin.home');
 Route::match(['get', 'post'], '/admin-home', [AdminController::class, 'index']);
 
-Route::match(['get', 'post'], '/karyawan-home', [KaryawanController::class, 'index']);
+Route::get('auth/admin-login', function () {
+    return view('auth.admin-login');
+});
+
+Route::get('inventaris-admin', [InventarisAdminController::class, 'index']);
+
+Route::get('/keuangan-admin', [KeuanganController::class, 'index']);
+
 
 Route::get('/landing', function () {
     return view('landing');
@@ -45,14 +54,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('auth/admin-login', function () {
-    return view('auth.admin-login');
-});
 
-Route::get('auth/karyawan-login', function () {
-    return view('auth.karyawan-login');
-});
-
-Route::post('auth/karyawan-login', [KaryawanLoginController::class, 'login'])->name('karyawan.login');
 
 require __DIR__.'/auth.php';

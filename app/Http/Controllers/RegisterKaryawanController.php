@@ -15,23 +15,29 @@ class RegisterKaryawanController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'username' => 'required',
-            'email' => 'required|email|unique:karyawans,email',
-            'jenis_kelamin' => 'required|in:Pria,Perempuan',
-            'no_telp' => 'required',
+        $validatedData = $request->validate([
+            'username' => 'required|unique:karyawans|max:255',
+            'email' => 'required|email|unique:karyawans',
+            'jenis_kelamin' => 'required|in:L,P',
+            'no_telp' => 'required|string',
             'password' => 'required|min:6',
         ]);
 
-        Karyawan::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'no_telp' => $request->no_telp,
-            'password' => Hash::make($request->password),
+        $karyawan = Karyawan::create([
+            'username' => $validatedData['username'],
+            'email' => $validatedData['email'],
+            'jenis_kelamin' => $validatedData['jenis_kelamin'],
+            'no_telp' => $validatedData['no_telp'],
+            'password' => bcrypt($validatedData['password']),
         ]);
 
-        return redirect('/admin-home')->with('success', 'Karyawan berhasil didaftarkan!');
+        if ($karyawan) {
+            session()->flash('success', "Karyawan {$karyawan->username} berhasil didaftarkan");
+            return redirect()->route('admin.home');
+        }
+
+        session()->flash('error', 'Gagal mendaftarkan karyawan');
+        return back();
 
     }
 }
