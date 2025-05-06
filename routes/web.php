@@ -7,9 +7,22 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\InventarisAdminController;
 use App\Http\Controllers\RegisterKaryawanController;
+use App\Http\Controllers\LaporanController;
+
+Route::get('/laporan-keuangan-harian', [LaporanController::class, 'index']);
+
 
 Route::get('/register-karyawan', [RegisterKaryawanController::class, 'showForm'])->name('register.karyawan');
-Route::post('/register-karyawan', [RegisterKaryawanController::class, 'store'])->name('register.karyawan.store');
+Route::post('/register-karyawan', [RegisterKaryawanController::class, 'store'])->name('register-karyawan');
+
+Route::get('auth/admin-login', [AdminLoginController::class, 'showLoginForm'])->name('auth.admin-login');
+Route::post('auth/admin-login', [AdminLoginController::class, 'login']);
+
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/landing');
+})->name('logout');
 
 
 Route::get('/karyawan-home', [KaryawanController::class, 'index'])->name('karyawan.home');
@@ -32,7 +45,7 @@ Route::get('inventaris-admin', [InventarisAdminController::class, 'index']);
 Route::get('/keuangan-admin', [KeuanganController::class, 'index']);
 
 
-Route::get('/', function () {
+Route::get('/landing', function () {
     return view('landing');
 })->name('landing');
 
