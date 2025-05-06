@@ -13,7 +13,7 @@
       <h2>Login</h2>
       <h3>Karyawan</h3>
 
-      <form action="{{ route('karyawan.login.post') }}" method="POST">
+      <form action="{{ route('karyawan.home') }}" method="POST">
         @csrf
         <div class="form-group">
           <label>Username</label>

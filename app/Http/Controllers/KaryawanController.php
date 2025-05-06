@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User;
+use App\Models\Catatan;
+use App\Models\Pengeluaran;
+
+
 
 
 class KaryawanController extends Controller
@@ -34,21 +38,17 @@ class KaryawanController extends Controller
     {
         $karyawan = Auth::guard('karyawan')->user();
 
+        $catatansChecked = Catatan::where('checked', 1)->get();  // Ambil catatan yang sudah diceklis
+        
+        $pendapatan = Catatan::where('checked', 1)->sum('harga');
+        $pengeluaran = Pengeluaran::sum('nominal');
+        $pendapatanBersih = $pendapatan - $pengeluaran;
+
         return view('karyawan-home', [
             'username' => $karyawan->username,
-            'pendapatan' => 0, 
-            'pengeluaran' => 0, 
-            'pendapatanBersih' => 0, 
+            'pendapatan' => $pendapatan,
+            'pengeluaran' => $pengeluaran,
+            'pendapatanBersih' => $pendapatanBersih,
         ]);  
     }
 }
-
-// public function index()
-    // {
-    //     return view('karyawan-home', [
-    //         'username' => 'User123',
-    //         'pendapatan' => 3335000,
-    //         'pengeluaran' => 'Karcis',
-    //         'pendapatanBersih' => 3330000
-    //     ]);
-    // }

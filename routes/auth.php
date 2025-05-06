@@ -17,6 +17,10 @@ Route::middleware('guest:karyawan')->group(function () {
     Route::post('karyawan/login', [KaryawanController::class, 'login']);
 });
 
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('/admin-home', [AdminController::class, 'index'])->name('admin.home');
+});
+
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])

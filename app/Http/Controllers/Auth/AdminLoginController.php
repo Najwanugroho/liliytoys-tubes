@@ -13,34 +13,29 @@ class AdminLoginController extends Controller
         return view('auth.admin-login'); // Mengembalikan tampilan login admin
     }
 
-    public function login(Request $request)
-    {
-        // Validasi input
-        $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
-        ]);
+    public function login(Request $request){
+    // Validasi input
+        $credentials = $request->only('username', 'password');
 
-        // Cek kredensial
-        if (Auth::guard('admin')->attempt([
-            'username' => $request->username,
-            'password' => $request->password,
-        ], $request->remember)) {
-            // Login berhasil, arahkan ke halaman admin home
-            return redirect()->route('admin.home');
+        if (Auth::guard('admin')->attempt($credentials)) {
+            if (auth('admin')->user()->role !== 'admin') {
+                Auth::guard('admin')->logout();
+                return back()->withErrors(['username' => 'Anda bukan admin']);
+            }
+
+            return redirect('/admin-home');
         }
 
-        // Login gagal, kembali ke halaman login dengan pesan error
+        // Login gagal
         return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
+            'username' => 'Username atau password salah.',
         ]);
     }
 
     public function logout(Request $request)
     {
         Auth::guard('admin')->logout();
-
-        // Redirect ke halaman login
         return redirect('/landing');
     }
+
 }

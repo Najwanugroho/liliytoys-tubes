@@ -15,7 +15,7 @@ class KaryawanLoginController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('karyawan')->attempt($credentials)) {
             return redirect()->route('karyawan-home');
         }
 

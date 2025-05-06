@@ -8,7 +8,8 @@ use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\InventarisAdminController;
 use App\Http\Controllers\RegisterKaryawanController;
 use App\Http\Controllers\LaporanController;
-
+use App\Http\Controllers\CatatanController;
+use App\Http\Controllers\PengeluaranController;
 
 Route::get('/laporan-keuangan-harian', [LaporanController::class, 'index']);
 
@@ -26,8 +27,13 @@ Route::post('/logout', function () {
 })->name('logout');
 
 
-Route::get('/catatan', [CatatanController::class, 'index'])->name('catatan');
+Route::get('/catatan', [CatatanController::class, 'index'])->name('catatan.index');
+Route::post('/catatan/tambah', [CatatanController::class, 'tambah'])->name('catatan.tambah');
+Route::post('/catatan/update', [CatatanController::class, 'update'])->name('catatan.update');
+Route::post('/catatan/update-status', [CatatanController::class, 'updateStatus'])->name('catatan.updateStatus');
+Route::post('/catatan/update-checkbox', [CatatanController::class, 'updateCheckbox'])->name('catatan.updateCheckbox');
 
+Route::post('/karyawan/pengeluaran', [PengeluaranController::class, 'store'])->name('karyawan.addPengeluaran');
 
 Route::get('/karyawan-home', [KaryawanController::class, 'index'])->name('karyawan.home');
 Route::match(['get', 'post'], '/karyawan-home', [KaryawanController::class, 'index']);
