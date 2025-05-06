@@ -12,7 +12,7 @@
   <div class="background">
     <div class="register-container">
       <h2>Register</h2>
-      <form action="{{ route('register-karyawan') }}" method="GET">
+      <form action="{{ route('register-karyawan') }}" method="POST">
         @csrf
 
         <div class="form-group">

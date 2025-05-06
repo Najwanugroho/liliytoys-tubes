@@ -41,9 +41,11 @@ Route::get('auth/admin-login', function () {
 });
 
 Route::get('inventaris-admin', [InventarisAdminController::class, 'index']);
+Route::post('/inventaris-admin/tambah', [InventarisAdminController::class, 'tambah'])->name('inventaris.tambah');
+Route::post('/inventaris/update', [InventarisController::class, 'update'])->name('inventaris.update');
+
 
 Route::get('/keuangan-admin', [KeuanganController::class, 'index']);
-
 
 Route::get('/landing', function () {
     return view('landing');

@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('inventaris', function (Blueprint $table) {
             $table->id();
+            $table->string('kategori'); // Skuter, Mobil, dll
+            $table->string('jenis');
+            $table->integer('stok_awal');
+            $table->integer('rusak')->default(0);
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('inventaris');
     }
 };

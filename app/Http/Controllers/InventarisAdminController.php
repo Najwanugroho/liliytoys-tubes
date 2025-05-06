@@ -1,21 +1,57 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Inventaris;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Session;
 
 class InventarisAdminController extends Controller
 {
-    public function index()
-{
-    $data = collect([
-        ['id' => 'A01', 'jenis' => 'Skuter Injak', 'stok_awal' => 10, 'rusak' => 4],
-        ['id' => 'A02', 'jenis' => 'Skuter Biasa', 'stok_awal' => 10, 'rusak' => 2],
-        ['id' => 'A03', 'jenis' => 'Skuter Listrik', 'stok_awal' => 2, 'rusak' => 1],
-    ]);
+    public function index(Request $request){
+        $tab = $request->get('tab', 'skuter');
+        $data = Inventaris::where('kategori', $tab)->get();
 
-    return view('inventaris-admin', compact('data'));
-}
+        return view('inventaris-admin', compact('data', 'tab'));
+    }
+
+    public function tambah(Request $request){
+
+        $request->validate([
+            'kategori' => 'required|string',
+            'jenis' => 'required|string',
+            'stok_awal' => 'required|integer',
+        ]);
+    
+        Inventaris::create([
+            'kategori' => $request->kategori,
+            'jenis' => $request->jenis,
+            'stok_awal' => $request->stok_awal,
+            'rusak' => $request->rusak,
+        ]);
+    
+        return redirect('/inventaris-admin?tab=' . $request->kategori)->with('success', 'Barang berhasil ditambahkan!');
+    }
+
+    public function update(Request $request)
+    {
+        $id = $request->input('id');
+        $field = $request->input('field');
+        $value = $request->input('value');
+    
+        $item = Inventaris::find($id);
+    
+        if (!$item || !in_array($field, ['stok_awal', 'rusak'])) {
+            return response()->json(['success' => false]);
+        }
+    
+        $item->$field = $value;
+        $item->save();
+    
+        return response()->json(['success' => true]);
+    }
+    
+
 }
