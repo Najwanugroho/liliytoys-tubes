@@ -22,10 +22,10 @@
 <!-- Tab Navigasi Kategori -->
 <nav class="category-nav">
     <div class="tabs">
-        <button class="active">Skuter</button>
-        <button>Mobil</button>
-        <button>Motor</button>
-        <button>Styrofoam</button>
+        <button><a href="{{ url('/inventaris-admin?tab=skuter') }}" class="{{ $tab == 'skuter' ? 'active' : '' }}">Skuter</a></button>
+        <button><a href="{{ url('/inventaris-admin?tab=mobil') }}" class="{{ $tab == 'mobil' ? 'active' : '' }}">Mobil</a></button>
+        <button><a href="{{ url('/inventaris-admin?tab=motor') }}" class="{{ $tab == 'motor' ? 'active' : '' }}">Motor</a></button>
+        <button><a href="{{ url('/inventaris-admin?tab=styrofoam') }}" class="{{ $tab == 'styrofoam' ? 'active' : '' }}">Styrofoam</a></button>
     </div>
     <button class="add-btn">+</button>
 </nav>
@@ -51,16 +51,16 @@
                 <td>{{ $item['jenis'] }}</td>
                 <td>
                     <div class="controls">
-                        <button class="rounded">-</button>
-                        <span>{{ $item['stok_awal'] }}</span>
-                        <button class="rounded">+</button>
+                        <button class="rounded" onclick="decrement(this, 'stok_awal')">-</button>
+                        <span class="count">{{ $item['stok_awal'] }}</span>
+                        <button class="rounded" onclick="increment(this, 'stok_awal')">+</button>
                     </div>
                 </td>
                 <td>
                     <div class="controls">
-                        <button class="rounded">-</button>
-                        <span>{{ $item['rusak'] }}</span>
-                        <button class="rounded">+</button>
+                        <button class="rounded" onclick="decrement(this, 'rusak')">-</button>
+                        <span class="count">{{ $item['rusak'] }}</span>
+                        <button class="rounded" onclick="increment(this, 'rusak')">+</button>
                     </div>
                 </td>
                 <td>{{ $item['stok_awal'] - $item['rusak'] }}</td>
@@ -79,6 +79,100 @@
 
 
 </main>
+
+<!-- Form Tambah Barang -->
+<div id="addModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+
+        <form action="{{ route('inventaris.tambah') }}" method="POST">
+            @csrf
+            <label for="kategori">Kategori:</label>
+            <select name="kategori" required>
+            <option value="skuter">Skuter</option>
+            <option value="mobil">Mobil</option>
+            <option value="motor">Motor</option>
+            <option value="styrofoam">Styrofoam</option>
+            </select>
+
+            <label for="jenis">Jenis:</label>
+            <input type="text" name="jenis" required placeholder="Contoh: Skuter Listrik">
+
+            <label for="stok_awal">Stok Awal:</label>
+            <input type="number" name="stok_awal" required min="0">
+
+            <label for="rusak">Jumlah Rusak:</label>
+            <input type="number" name="rusak" value="0" min="0">
+
+            <button type="submit">Tambah</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('addModal');
+    const addBtn = document.querySelector('.add-btn');
+
+    addBtn.addEventListener('click', () => {
+        modal.style.display = 'block';
+    });
+
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    function updateValue(id, field, value, span) {
+    fetch('/inventaris/update', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({ id, field, value })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            span.textContent = value;
+            updateStokSaatIni(span);
+        }
+    });
+}
+
+function increment(button, field) {
+    const span = button.parentElement.querySelector('.count');
+    let value = parseInt(span.textContent);
+    const id = button.closest('tr').children[1].textContent;
+
+    updateValue(id, field, value + 1, span);
+}
+
+function decrement(button, field) {
+    const span = button.parentElement.querySelector('.count');
+    let value = parseInt(span.textContent);
+    if (value <= 0) return;
+
+    const id = button.closest('tr').children[1].textContent;
+
+    updateValue(id, field, value - 1, span);
+}
+
+
+    function updateStokSaatIni(span) {
+        const row = span.closest('tr');
+        const stok = parseInt(row.children[3].querySelector('.count').textContent);
+        const rusak = parseInt(row.children[4].querySelector('.count').textContent);
+        row.children[5].textContent = stok - rusak;
+    }
+
+</script>
+
 
 </body>
 </html>

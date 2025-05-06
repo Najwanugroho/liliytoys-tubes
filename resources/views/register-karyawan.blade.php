@@ -12,7 +12,6 @@
   <div class="background">
     <div class="register-container">
       <h2>Register</h2>
-
       <form action="{{ route('register-karyawan') }}" method="POST">
         @csrf
 
@@ -58,7 +57,10 @@
             <span>{{ $message }}</span>
         @enderror
         </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> f1534c6087a0b9692eb5bb52fe13c9618171835e
         <button type="submit">Submit</button>
       </form>
     </div>

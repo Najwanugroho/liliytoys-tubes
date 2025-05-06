@@ -61,12 +61,10 @@
             </a>
             <a href="{{ url('/laporan-keuangan-harian') }}">
             <button><img src="{{ asset('images/Catatan.png') }}" alt="Catatan"></button>
-            </a>
-            <a href="{{ url('#') }}">
-            <button><img src="{{ asset('images/Box.png') }}" alt="Box"></button>
             <a href="{{ url('/inventaris-admin') }}">
                 <button><img src="{{ asset('images/Box.png') }}" alt="Box"></button>
             </a>
+
         </footer>
     </div>
 
