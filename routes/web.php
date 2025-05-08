@@ -8,10 +8,27 @@ use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\InventarisAdminController;
 use App\Http\Controllers\RegisterKaryawanController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\buttonController;
+use App\Http\Controllers\CatatanController;
+use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\DetailKaryawanController;
+use App\Http\Controllers\InventarisController;
+use App\Http\Controllers\PengeluaranController;
 
+Route::get('/laporan-keuangan-harian', [LaporanController::class, 'index']);
+Route::post('/laporan-keuangan/tambah', [LaporanController::class, 'tambah'])->name('laporan-keuangan.tambah');
+
+Route::post('/inventaris/tambah', [InventarisAdminController::class, 'tambah'])->name('inventaris.tambah');
+
+Route::get('/karyawan', [DetailKaryawanController::class, 'show']);
+Route::post('/karyawan/update', [KaryawanController::class, 'update'])->name('karyawan.update');
+Route::delete('/karyawan/hapus', [DetailKaryawanController::class, 'destroy']);
+// Route::delete('/karyawan/tambah', [DetailKaryawanController::class, 'store']);
+Route::get('/detail-karyawan/{id}', [DetailKaryawanController::class, 'detail'])->name('detail-karyawan');
 
 Route::get('/laporan-keuangan-harian', [LaporanController::class, 'index']);
 
+Route::post('/karyawan/pengeluaran', [PengeluaranController::class, 'store'])->name('karyawan.addPengeluaran');
 
 Route::get('/register-karyawan', [RegisterKaryawanController::class, 'showForm'])->name('register.karyawan');
 Route::post('/register-karyawan', [RegisterKaryawanController::class, 'store'])->name('register-karyawan');
@@ -27,6 +44,13 @@ Route::post('/logout', function () {
 
 
 Route::get('/catatan', [CatatanController::class, 'index'])->name('catatan');
+
+Route::get('/catatan', [CatatanController::class, 'index'])->name('catatan.index');
+Route::post('/catatan/tambah', [CatatanController::class, 'tambah'])->name('catatan.tambah');
+Route::post('/catatan/update', [CatatanController::class, 'update'])->name('catatan.update');
+Route::post('/catatan/update-status', [CatatanController::class, 'updateStatus'])->name('catatan.updateStatus');
+Route::post('/catatan/update-checkbox', [CatatanController::class, 'updateCheckbox'])->name('catatan.updateCheckbox');
+
 
 
 Route::get('/karyawan-home', [KaryawanController::class, 'index'])->name('karyawan.home');
@@ -44,9 +68,17 @@ Route::get('auth/admin-login', function () {
     return view('auth.admin-login');
 });
 
-Route::get('inventaris-admin', [InventarisAdminController::class, 'index']);
+Route::post('auth/admin-login', [AdminLoginController::class, 'login'])->name('admin.login');
+
+Route::get('inventaris-admin', [InventarisAdminController::class, 'index'])->name('inventaris-admin');
 Route::post('/inventaris-admin/tambah', [InventarisAdminController::class, 'tambah'])->name('inventaris.tambah');
-Route::post('/inventaris/update', [InventarisController::class, 'update'])->name('inventaris.update');
+Route::post('/inventaris-admin/update', [InventarisController::class, 'update'])->name('inventaris.update');
+Route::post('/inventaris/update', [InventarisController::class, 'update']);
+
+Route::post('/tambah',[buttonController::class, 'tambah'])->name('tambah');
+Route::post('/kurang',[buttonController::class, 'kurang'])->name('kurang');
+Route::post('/kurangiRusak',[buttonController::class, 'kurangiRusak'])->name('kurangiRusak');
+Route::post('/tambahiRusak',[buttonController::class, 'tambahiRusak'])->name('tambahiRusak');
 
 
 Route::get('/keuangan-admin', [KeuanganController::class, 'index']);

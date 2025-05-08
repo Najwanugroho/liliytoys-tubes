@@ -49,7 +49,12 @@
             </a>
             <ul class="employee-list">
                 @forelse ($karyawans as $karyawan)
-                    <li>{{ $karyawan->username }} <i class="fas fa-ellipsis-v"></i></li>
+                    <li>
+                        <a href="{{ url('/detail-karyawan/' . $karyawan->id) }}">
+                            {{ $karyawan->username }}
+                        </a>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </li>
                 @empty
                     <li>Belum ada karyawan.</li>
                 @endforelse

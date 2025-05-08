@@ -51,16 +51,39 @@
                 <td>{{ $item['jenis'] }}</td>
                 <td>
                     <div class="controls">
-                        <button class="rounded" onclick="decrement(this, 'stok_awal')">-</button>
+                        {{-- <button class="rounded" onclick="decrement(this, 'stok_awal')">-</button> --}}
+                        <form action="{{ route('kurang') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $item->id }}">
+                            <button class="rounded" type="submit">-</button>
+                            {{-- <button class="rounded" onclick="increment(this, 'stok_awal')">+</button> --}}
+                        </form>
                         <span class="count">{{ $item['stok_awal'] }}</span>
-                        <button class="rounded" onclick="increment(this, 'stok_awal')">+</button>
+                        <form action="{{ route('tambah') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $item->id }}">
+                            <button class="rounded" type="submit">+</button>
+                            {{-- <button class="rounded" onclick="increment(this, 'stok_awal')">+</button> --}}
+                        </form>
                     </div>
                 </td>
                 <td>
                     <div class="controls">
-                        <button class="rounded" onclick="decrement(this, 'rusak')">-</button>
+                        {{-- <button class="rounded" onclick="decrement(this, 'rusak')">-</button> --}}
+                        <form action="{{ route('kurangiRusak') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $item->id }}">
+                            <button class="rounded" type="submit">-</button>
+                            {{-- <button class="rounded" onclick="increment(this, 'stok_awal')">+</button> --}}
+                        </form>
                         <span class="count">{{ $item['rusak'] }}</span>
-                        <button class="rounded" onclick="increment(this, 'rusak')">+</button>
+                        <form action="{{ route('tambahiRusak') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $item->id }}">
+                            <button class="rounded" type="submit">+</button>
+                            {{-- <button class="rounded" onclick="increment(this, 'stok_awal')">+</button> --}}
+                        </form>
+                        {{-- <button class="rounded" onclick="increment(this, 'rusak')">+</button> --}}
                     </div>
                 </td>
                 <td>{{ $item['stok_awal'] - $item['rusak'] }}</td>

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User;
-
+use App\Models\Catatan;
+use App\Models\Pengeluaran;
+use App\Models\Karyawan;
+use Carbon\Carbon;
 
 class KaryawanController extends Controller
 {
@@ -34,21 +37,59 @@ class KaryawanController extends Controller
     {
         $karyawan = Auth::guard('karyawan')->user();
 
+        $data = Catatan::all();
+        if (!$karyawan) {
+            return redirect()->route('karyawan.login')->with('error', 'Harap login terlebih dahulu.');
+        }
+
+        $today = Carbon::today();
+
+        $catatansChecked = Catatan::where('checked', 1)->get();
+
+        $pendapatan = Catatan::where('status', 'Lunas')
+        ->whereDate('created_at', $today)
+        ->sum('harga');
+        // dd($pendapatan);
+
+        $pengeluaran = Pengeluaran::whereDate('created_at', $today)
+        ->sum('nominal');
+
+        $pendapatanBersih = $pendapatan - $pengeluaran;
+
         return view('karyawan-home', [
             'username' => $karyawan->username,
-            'pendapatan' => 0, 
-            'pengeluaran' => 0, 
-            'pendapatanBersih' => 0, 
-        ]);  
+            'pendapatan' => $pendapatan,
+            'pengeluaran' => $pengeluaran,
+            'pendapatanBersih' => $pendapatanBersih,
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        $karyawan = karyawan::find($request->id);
+
+        if (!$karyawan) {
+            return redirect()->route('karyawan.login')->with('error', 'Harap login terlebih dahulu.');
+        }
+
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'jenis_kelamin' => 'required|string',
+            'no_telp' => 'required|string|max:15',
+            'password' => 'required|string|min:8',
+        ]);
+
+        // dd($request);
+        $karyawan->update([
+            'username' => $request->nama,
+            // 'nama' => $request->nama,
+            'email' => $request->email,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'no_telp' => $request->no_telp,
+            'password' => bcrypt($request->password),
+        ]);
+
+        return redirect()->back()->with('success', 'Data karyawan berhasil diperbarui.');
     }
 }
-
-// public function index()
-    // {
-    //     return view('karyawan-home', [
-    //         'username' => 'User123',
-    //         'pendapatan' => 3335000,
-    //         'pengeluaran' => 'Karcis',
-    //         'pendapatanBersih' => 3330000
-    //     ]);
-    // }

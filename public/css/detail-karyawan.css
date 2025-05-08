@@ -1,0 +1,171 @@
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f5eee8;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .header {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .logo {
+    height: 50px;
+}
+
+  .profile-pic {
+    margin: 20px auto;
+    width: 100px;
+    height: 100px;
+    background-color: #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #888;
+  }
+
+  .card {
+    background: #fff;
+    display: inline-block;
+    text-align: left;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    position: relative;
+    min-width: 300px;
+  }
+
+  .card p {
+    margin: 10px 0;
+    font-size: 16px;
+  }
+
+  .label {
+    display: inline-block;
+    width: 120px;
+  }
+
+  .menu {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 35px;
+    right: 10px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    display: none;
+  }
+
+  .dropdown div {
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  .dropdown div:hover {
+    background-color: #f0f0f0;
+  }
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5); /* Transparan gelap */
+    justify-content: center;
+    align-items: center;
+  }
+
+  .category-nav .tabs a {
+    text-decoration: none; /* Hilangkan underline */
+    color: inherit; /* Gunakan warna teks dari parent */
+}
+
+/* Opsional: Tambahkan gaya aktif */
+.category-nav .tabs .active {
+    font-weight: bold;
+    color: #4bb5ac; /* Warna custom saat aktif */
+    border-bottom: 2px solid #4bb5ac;
+}
+  /* Modal Box */
+  .modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    position: relative;
+    animation: fadeIn 0.3s ease;
+  }
+
+  /* Tutup (X) */
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.2s ease;
+  }
+
+  .close-btn:hover {
+    color: #333;
+  }
+
+  /* Form Styling */
+  #editForm label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+  }
+
+  #editForm input,
+  #editForm select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1rem;
+  }
+
+  #editForm button[type="submit"] {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  #editForm button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
+  /* Animasi muncul */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }

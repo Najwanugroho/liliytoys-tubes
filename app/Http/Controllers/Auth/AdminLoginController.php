@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminLoginController extends Controller
 {
@@ -15,25 +17,22 @@ class AdminLoginController extends Controller
 
     public function login(Request $request)
     {
+        $username = $request->username;
+        $pass = $request->password;
         // Validasi input
+
+        $user = Admin::where('username',$username)->first();
+        // dd($user->password);
         $request->validate([
             'username' => 'required|string',
             'password' => 'required|string',
         ]);
 
-        // Cek kredensial
-        if (Auth::guard('admin')->attempt([
-            'username' => $request->username,
-            'password' => $request->password,
-        ], $request->remember)) {
-            // Login berhasil, arahkan ke halaman admin home
+        if($user && Hash::check($pass, $user->password)){
             return redirect()->route('admin.home');
+        }else{
+            return redirect()->back();
         }
-
-        // Login gagal, kembali ke halaman login dengan pesan error
-        return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
-        ]);
     }
 
     public function logout(Request $request)

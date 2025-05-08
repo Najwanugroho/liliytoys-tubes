@@ -41,6 +41,15 @@ body {
     height: 40px;
 }
 
+.employee-list a {
+    color: inherit;           /* Gunakan warna teks dari parent (li) */
+    text-decoration: none;    /* Hilangkan garis bawah */
+  }
+
+  .employee-list a:hover {
+    text-decoration: underline; /* Tambahkan efek hover jika ingin */
+  }
+
 .dropdown-menu {
     position: absolute;
     top: 50px;

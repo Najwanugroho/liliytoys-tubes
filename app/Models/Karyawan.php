@@ -20,6 +20,6 @@ class Karyawan extends Authenticatable
         'no_telp',
         'password',
     ];
-    
+
     protected $hidden = ['password'];
 }

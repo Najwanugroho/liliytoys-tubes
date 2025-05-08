@@ -24,34 +24,37 @@ class InventarisAdminController extends Controller
             'jenis' => 'required|string',
             'stok_awal' => 'required|integer',
         ]);
-    
+
         Inventaris::create([
             'kategori' => $request->kategori,
             'jenis' => $request->jenis,
             'stok_awal' => $request->stok_awal,
             'rusak' => $request->rusak,
         ]);
-    
+
         return redirect('/inventaris-admin?tab=' . $request->kategori)->with('success', 'Barang berhasil ditambahkan!');
     }
 
     public function update(Request $request)
     {
-        $id = $request->input('id');
-        $field = $request->input('field');
-        $value = $request->input('value');
-    
-        $item = Inventaris::find($id);
-    
-        if (!$item || !in_array($field, ['stok_awal', 'rusak'])) {
-            return response()->json(['success' => false]);
+        $item = Inventaris::find($request->id);
+        if (!$item) {
+            return response()->json(['success' => false, 'message' => 'Data tidak ditemukan']);
         }
-    
-        $item->$field = $value;
-        $item->save();
-    
-        return response()->json(['success' => true]);
+
+        $field = $request->field;
+        $value = $request->value;
+
+        if (in_array($field, ['stok_awal', 'rusak'])) {
+            $item->$field = $value;
+            $item->save();
+
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Field tidak valid']);
     }
-    
+
+
 
 }

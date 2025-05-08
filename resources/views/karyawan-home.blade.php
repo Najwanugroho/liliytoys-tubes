@@ -23,10 +23,7 @@
                     </a>
                     <script>
                         function logoutAndRedirect() {
-                            // Logout
                             document.getElementById('logout-form').submit();
-
-                            // Redirect setelah logout
                             window.location.href = "{{ url('landing') }}";
                         }
                     </script>
@@ -45,15 +42,49 @@
                 <p>Pendapatan:</p>
                 <h3>Rp. {{ number_format($pendapatan, 0, ',', '.') }}</h3>
             </div>
-            <div class="card brown">
+
+            <div class="card brown" onclick="toggleFormPengeluaran()">
                 <p>Pengeluaran:</p>
                 <h3>{{ $pengeluaran }}</h3>
             </div>
+
             <div class="card green">
                 <p>Pendapatan Bersih:</p>
                 <h3>Rp. {{ number_format($pendapatanBersih, 0, ',', '.') }}</h3>
             </div>
         </div>
+
+        <div id="formPengeluaran" style="display: none;" class="popup-form">
+            <form action="{{ route('karyawan.addPengeluaran') }}" method="POST" style="background:white; padding: 20px; border-radius: 10px; width: 300px; margin: auto;">
+                @csrf
+                <h3>Tambah Pengeluaran</h3>
+                <label>
+                    Jenis:
+                    <select name="jenis_pengeluaran" id="jenisSelect" onchange="toggleInputLainnya()">
+                        <option value="Karcis">Karcis (Rp5.000)</option>
+                        <option value="lainnya">Lainnya</option>
+                    </select>
+                </label><br><br>
+
+                <div id="lainnyaFields" style="display: none;">
+                    <label>
+                        Jenis Lainnya:
+                        <input type="text" name="jenis_pengeluaran_custom">
+                    </label><br><br>
+
+                    <label>
+                        Nominal:
+                        <input type="number" name="nominal_custom">
+                    </label><br><br>
+                </div>
+
+                <input type="hidden" name="nominal" value="5000" id="nominalHidden">
+
+                <button type="submit">Tambah</button>
+                <button type="button" onclick="closeFormPengeluaran()">Batal</button>
+            </form>
+        </div>
+
 
         <footer class="footer">
             <a href="{{ url('/catatan') }}">
@@ -81,6 +112,29 @@
                 dropdown.classList.add('hidden');
             }
         });
+
+        function toggleFormPengeluaran() {
+        document.getElementById('formPengeluaran').style.display = 'block';
+        }
+
+        function closeFormPengeluaran() {
+            document.getElementById('formPengeluaran').style.display = 'none';
+        }
+
+        function toggleInputLainnya() {
+            const select = document.getElementById('jenisSelect');
+            const lainnyaFields = document.getElementById('lainnyaFields');
+            const nominalInput = document.getElementById('nominalHidden');
+
+            if (select.value === 'lainnya') {
+                lainnyaFields.style.display = 'block';
+                nominalInput.name = ""; // disable hidden
+            } else {
+                lainnyaFields.style.display = 'none';
+                nominalInput.name = "nominal";
+                nominalInput.value = 5000;
+            }
+        }
     </script>
 </body>
 </html>

@@ -45,6 +45,11 @@ return [
             'driver' => 'session',
             'provider' => 'karyawans',
         ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
 
     /*
@@ -70,14 +75,14 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
-
         'karyawans' => [
             'driver' => 'eloquent',
             'model' => App\Models\Karyawan::class
+        ],
+
+        'Admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class
         ],
     ],
 

@@ -17,6 +17,8 @@ class AdminController extends Controller
 
     public function login(Request $request)
     {
+        dd($request->all());
+        $user = User::where('user');
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
@@ -29,7 +31,7 @@ class AdminController extends Controller
     public function index()
     {
         $karyawans = Karyawan::all();
-        return view('admin-home', compact('karyawans')); 
+        return view('admin-home', compact('karyawans'));
     }
 }
 
