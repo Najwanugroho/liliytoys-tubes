@@ -12,6 +12,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
+        <img src="{{ asset('images/Logo2.png') }}" alt="Logo" class="navbar-logo">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -52,16 +53,34 @@
 
 
 
-  <!-- Contact Section -->
-  <section class="contact text-center py-5" id="contact">
+  <section class="contact-professional py-5" id="contact">
     <div class="container">
-      <h2 class="mb-4">Our Contact</h2>
-      <p><strong>Call Us:</strong> +62xxxxxxxxx</p>
-      <p><strong>Location:</strong> Jl. Swadaya Raya RT05/RW02</p>
-      <p><strong>Email:</strong> nxxxxxx@gmail.com</p>
-      <img src="{{ asset('images/location.jpg') }}" alt="Location" class="img-fluid mt-3" width="400">
+      <div class="row">
+        <!-- Kolom 1 -->
+        <div class="col-md-4 mb-4">
+            <div class="desc">
+          <img src="{{ asset('images/Logo.png') }}" alt="Logo" class="img-fluid mb-3" style="max-width: 150px;">
+          <p>Kami menyediakan layanan laundry profesional dengan teknologi canggih dan tim berpengalaman.</p>
+          <p class="text-muted mt-4">Lily Toy's © 2025. All rights reserved.</p>
+        </div>
+    </div>
+
+        <!-- Kolom 2 -->
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold border-bottom pb-2">KONTAK KAMI</h5>
+          <p><a href="mailto:lilytoys@gmail.com">lilytoys@gmail.com</a><br>0821-2779-8574</p>
+        </div>
+
+        <!-- Kolom 3 -->
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold border-bottom pb-2">LOKASI</h5>
+          <img src="{{ asset('images/location.jpg') }}" alt="Lokasi" class="img-fluid rounded mb-2" style="max-width: 100%;">
+          <p>JL. Pantai Indah Kapuk 2</p>
+        </div>
+      </div>
     </div>
   </section>
+
 
   <!-- Footer -->
   <footer class="text-center py-4 bg-white border-top">

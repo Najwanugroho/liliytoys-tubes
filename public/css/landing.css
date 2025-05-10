@@ -5,6 +5,23 @@ body {
     color: #333;
   }
 
+  .navbar-logo {
+    max-width: 30px ;
+    margin-top: auto;
+  }
+  .container navbar-logo{
+    margin-right: 100px;
+  }
+
+
+  @media (max-width: 768px) {
+    .navbar .navbar-collapse img {
+      max-height: 50px;
+      margin: 10px auto;
+      display: block;
+    }
+  }
+
   /* Navbar */
   .navbar {
     padding: 10px 0;
@@ -24,11 +41,7 @@ body {
     border-radius: 10px;
   }
 
-  /* Hero Section */
-  .hero img {
-    max-width: 100%;
-    height: auto;
-  }
+
 
   /* About & Visi Section */
 
@@ -49,30 +62,81 @@ body {
   margin: 0;
   padding: 0;
 }
-
-  /* Contact Section */
-  .contact {
-    background-color: #f8f9fa;
+.contact-professional .fw-bold {
+    font-weight: 600;
+    font-size: 1.1rem;
   }
 
-  .contact h2 {
-    color: #000000;
+  .contact-professional img {
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
   }
 
-  .contact p {
-    margin: 5px 0;
+
+/* Kontak Profesional */
+.contact-professional {
+    background-color: #f8f9fa; /* warna latar belakang netral */
+    color: #343a40; /* teks gelap */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
-  .contact img {
-    border-radius: 20px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  .contact-professional .col-md-4 {
+    text-align: center;
+  }
+
+  .contact-professional .desc {
+    text-align: left;
+  }
+
+
+  .contact-professional h5 {
+    color: #212529;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #6c757d;
+    padding-bottom: 4px;
+    display: inline-block;
+  }
+
+  .contact-professional p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .contact-professional a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .contact-professional a:hover {
+    text-decoration: underline;
+  }
+
+  /* Logo & Deskripsi */
+  .contact-professional img {
+    border-radius: 8px;
   }
 
   /* Footer */
   footer {
-    background-color: #fff;
-    border-top: 1px solid #ddd;
-    color: #777;
+    background-color: #ffffff;
+    color: #6c757d;
+    font-size: 0.9rem;
+    border-top: 1px solid #dee2e6;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 768px) {
+    .contact-professional .col-md-3 {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .contact-professional img {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   /* Responsive */

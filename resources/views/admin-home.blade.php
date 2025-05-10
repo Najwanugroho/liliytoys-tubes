@@ -44,6 +44,9 @@
 
         <section class="employee-section">
             <h2>Karyawan:</h2>
+            <div class="search-bar">
+                <input type="text" placeholder="Search">
+            </div>
             <a href="{{ url('/register-karyawan') }}">
                 <button class="add-employee">+ Add Employee</button>
             </a>

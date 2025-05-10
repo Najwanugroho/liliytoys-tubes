@@ -49,7 +49,7 @@ class KaryawanController extends Controller
         $pendapatan = Catatan::where('status', 'Lunas')
         ->whereDate('created_at', $today)
         ->sum('harga');
-        // dd($pendapatan);
+        //dd($pendapatan);
 
         $pengeluaran = Pengeluaran::whereDate('created_at', $today)
         ->sum('nominal');

@@ -37,34 +37,55 @@
             </select>
         </div>
 
-        <!-- Tabel -->
-        <table class="report-table">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Nama</th>
-                    <th>Tanggal</th>
-                    <th>Waktu</th>
-                    <th>Pendapatan</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;"><td>1.</td><td>User123</td><td>05/05/2025</td><td>07.30 - 15.30</td><td>Rp. 1.000.000</td></tr>
-                <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;"><td>2.</td><td>User123</td><td>07/05/2025</td><td>07.30 - 15.30</td><td>Rp. 2.000.000</td></tr>
-                <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;"><td>3.</td><td>User456</td><td>08/05/2025</td><td>07.30 - 15.30</td><td>Rp. 3.000.000</td></tr>
-                <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;"><td>4.</td><td>User123</td><td>09/05/2025</td><td>07.30 - 15.30</td><td>Rp. 1.000.000</td></tr>
-                <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;"><td>5.</td><td>User456</td><td>10/05/2025</td><td>07.30 - 15.30</td><td>Rp. 2.000.000</td></tr>
-                <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;"><td>6.</td><td>User456</td><td>11/05/2025</td><td>07.30 - 15.30</td><td>Rp. 3.000.000</td></tr>
-                <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;"><td>6.</td><td>User456</td><td>11/05/2025</td><td>07.30 - 15.30</td><td>Rp. 3.000.000</td></tr>
-                <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;"><td>7.</td><td>User456</td><td>12/05/2025</td><td>07.30 - 15.30</td><td>Rp. 4.000.000</td></tr>
-            </tbody>
-        </table>
+       <!-- Tabel -->
+<table class="report-table">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Nama</th>
+            <th>Tanggal</th>
+            <th>Waktu</th>
+            <th>Pendapatan</th>
+            <th>Pengeluaran</th>
+            <th>Pendapatan Bersih</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;">
+            <td>1.</td><td>User123</td><td>05/05/2025</td><td>07.30 - 15.30</td>
+            <td>Rp. 1.000.000</td><td>Rp. 200.000</td><td>Rp. 800.000</td>
+        </tr>
+        <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;">
+            <td>2.</td><td>User123</td><td>07/05/2025</td><td>07.30 - 15.30</td>
+            <td>Rp. 2.000.000</td><td>Rp. 500.000</td><td>Rp. 1.500.000</td>
+        </tr>
+        <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;">
+            <td>3.</td><td>User456</td><td>08/05/2025</td><td>07.30 - 15.30</td>
+            <td>Rp. 3.000.000</td><td>Rp. 800.000</td><td>Rp. 2.200.000</td>
+        </tr>
+        <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;">
+            <td>4.</td><td>User123</td><td>09/05/2025</td><td>07.30 - 15.30</td>
+            <td>Rp. 1.000.000</td><td>Rp. 200.000</td><td>Rp. 800.000</td>
+        </tr>
+        <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;">
+            <td>5.</td><td>User456</td><td>10/05/2025</td><td>07.30 - 15.30</td>
+            <td>Rp. 2.000.000</td><td>Rp. 400.000</td><td>Rp. 1.600.000</td>
+        </tr>
+        <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;">
+            <td>6.</td><td>User456</td><td>11/05/2025</td><td>07.30 - 15.30</td>
+            <td>Rp. 3.000.000</td><td>Rp. 700.000</td><td>Rp. 2.300.000</td>
+        </tr>
+        <tr onclick="location.href='/laporan-keuangan-harian';" style="cursor: pointer;">
+            <td>7.</td><td>User456</td><td>12/05/2025</td><td>07.30 - 15.30</td>
+            <td>Rp. 4.000.000</td><td>Rp. 900.000</td><td>Rp. 3.100.000</td>
+        </tr>
+    </tbody>
+</table>
 
-        <!-- Total -->
-        <div class="total">
-            <strong>Total Pendapatan:</strong> Rp. 16.000.000
-        </div>
+<!-- Total -->
+<div class="total">
+    <strong>Total Pendapatan:</strong> Rp. 16.000.000<br>
+    <strong>Total Pengeluaran:</strong> Rp. 3.700.000<br>
+    <strong>Pendapatan Bersih:</strong> Rp. 12.300.000
+</div>
 
-    </div>
-</body>
-</html>

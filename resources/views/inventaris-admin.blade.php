@@ -21,14 +21,19 @@
 
 <!-- Tab Navigasi Kategori -->
 <nav class="category-nav">
-    <div class="tabs">
-        <button><a href="{{ url('/inventaris-admin?tab=skuter') }}" class="{{ $tab == 'skuter' ? 'active' : '' }}">Skuter</a></button>
-        <button><a href="{{ url('/inventaris-admin?tab=mobil') }}" class="{{ $tab == 'mobil' ? 'active' : '' }}">Mobil</a></button>
-        <button><a href="{{ url('/inventaris-admin?tab=motor') }}" class="{{ $tab == 'motor' ? 'active' : '' }}">Motor</a></button>
-        <button><a href="{{ url('/inventaris-admin?tab=styrofoam') }}" class="{{ $tab == 'styrofoam' ? 'active' : '' }}">Styrofoam</a></button>
+    <div class="category-actions">
+      <div class="dropdown">
+        <select onchange="location = this.value;">
+          <option disabled selected>Pilih Kategori</option>
+          <option value="{{ url('/inventaris-admin?tab=skuter') }}" {{ $tab == 'skuter' ? 'selected' : '' }}>Skuter</option>
+          <option value="{{ url('/inventaris-admin?tab=mobil') }}" {{ $tab == 'mobil' ? 'selected' : '' }}>Mobil</option>
+          <option value="{{ url('/inventaris-admin?tab=motor') }}" {{ $tab == 'motor' ? 'selected' : '' }}>Motor</option>
+          <option value="{{ url('/inventaris-admin?tab=styrofoam') }}" {{ $tab == 'styrofoam' ? 'selected' : '' }}>Styrofoam</option>
+        </select>
+      </div>
+      <button class="add-btn2">+</button>
     </div>
-    <button class="add-btn">+</button>
-</nav>
+  </nav>
 
 <main>
     <!-- Tabel Inventaris -->
@@ -99,6 +104,9 @@
             {{ $data->sum(fn($item) => $item['stok_awal'] - $item['rusak']) }}
         </strong>
     </div>
+   <div class="add-btn-wrapper left">
+    <button class="add-btn">+</button>
+</div>
 
 
 </main>

@@ -11,6 +11,9 @@
 <body>
 
   <div class="header">
+    <a href="{{ url('/admin-home') }}" class="back-button">
+        <img src="{{ asset('images/Back.png') }}" alt="Back">
+      </a>
     <img src="{{ asset('images/Logo.png') }}" alt="Logo" class="logo">
   </div>
 
@@ -24,8 +27,8 @@
       <div onclick="editData()">Edit</div>
       <div onclick="hapusData()">Hapus</div>
     </div>
-    <p><span class="label">Nama</span>: {{ $karyawan->username }}</p>
-    <p><span class="label">Email</span>: {{ $karyawan->email }}</p>
+    <p><span class="label">Nama</span>     : {{ $karyawan->username }}</p>
+    <p><span class="label">Email</span>    : {{ $karyawan->email }}</p>
     <p><span class="label">Jenis Kelamin</span>: {{ $karyawan->jenis_kelamin }}</p>
     <p><span class="label">No.Telp</span>: {{ $karyawan->no_telp }}</p>
   </div>

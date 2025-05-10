@@ -53,6 +53,30 @@ body {
 }
 
 /* Navigasi Kategori */
+.category-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .add-btn2 {
+    background-color: #4bb5ac;
+    color: #e0f0ef;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  .add-btn2:hover {
+    background-color: #399c94;
+    transform: scale(1.05);
+  }
+
 .category-nav {
     display: flex;
     justify-content: space-between;
@@ -66,38 +90,41 @@ body {
     gap: 0.5rem;
 }
 
-.category-nav button {
-    background-color: #ffffff;
-    border: none;
-    padding: 8px 16px;
+
+.category-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    font-family: 'Poppins', sans-serif;
+}
+
+.dropdown select {
+    padding: 10px 16px;
+    border: 2px solid #d8f5f3;
+    border-radius: 10px;
+
+    color: #333;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
-.category-nav .active {
-    background-color: #e0f0ef;
-    font-weight: bold;
-}
-.category-nav .add-btn {
-    background-color: #ffffff;
-    color: #4bb5ac;
-    border: none;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    font-size: 23px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, transform 0.2s;
-    margin-left: 1rem; /* spasi dari tombol kategori */
+.dropdown select:hover {
+    border-color: #d8f5f3;
 }
 
-.category-nav .add-btn:hover {
-    background-color: #d8f5f3;
-    transform: scale(1.05);
+.dropdown select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(200, 162, 200, 0.4);
+}
+
+.add-btn-wrapper.left {
+    text-align: left;
+    padding-left: 30px;
+    margin-top: 10px;
 }
 
 
@@ -122,6 +149,30 @@ body {
 .inventory-table tbody tr:nth-child(even) {
     background-color: #edf7f4;
 }
+.add-btn-wrapper.left {
+    text-align: right;
+    margin: 20px 30px 30px; /* jarak dari tepi */
+}
+
+.add-btn {
+    background-color: #4bb5ac;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-btn:hover {
+    background-color: #399c94;
+    transform: scale(1.05);
+}
+
 
 /* Tombol Kontrol + / - */
 .controls {
@@ -155,21 +206,6 @@ button.rounded:hover {
     font-weight: bold;
 }
 
-/* Tombol Tambah Data */
-.add-btn {
-    margin: 20px auto;
-    display: block;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #8dd1d1;
-    border: none;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    color: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
 
 /* Modal container */
 .modal {
@@ -186,6 +222,7 @@ button.rounded:hover {
     align-items: center;
     font-family: 'Poppins', sans-serif;
 }
+
 
 /* Modal box */
 .modal-content {

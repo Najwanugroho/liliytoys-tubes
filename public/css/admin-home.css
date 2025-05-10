@@ -40,6 +40,28 @@ body {
 .user-icon img {
     height: 40px;
 }
+.search-bar {
+    margin: 12px 0 20px 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.search-bar input[type="text"] {
+    padding: 10px 14px;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s;
+}
+
+.search-bar input[type="text"]:focus {
+    border-color: #a88dcf; /* warna pastel ungu */
+    box-shadow: 0 0 5px rgba(168, 141, 207, 0.4);
+}
+
 
 .employee-list a {
     color: inherit;           /* Gunakan warna teks dari parent (li) */
@@ -132,7 +154,7 @@ body {
 .employee-list {
     list-style: none;
     padding: 0;
-    margin-top: 40px;
+    margin-top: 10px;
 }
 
 .employee-list li {
@@ -165,4 +187,27 @@ body {
 .footer button img {
     width: 40px;
     height: 40px;
-}
+}@media (max-width: 480px) {
+    .welcome-banner {
+      font-size: 20px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .dropdown-menu {
+      width: 100px;
+      font-size: 12px;
+    }
+
+    .dropdown-menu a {
+      padding: 8px 12px;
+    }
+
+    .header img {
+      height: 40px;
+    }
+
+    .user-icon img {
+      height: 32px;
+    }
+  }

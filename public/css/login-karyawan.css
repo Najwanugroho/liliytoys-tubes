@@ -68,3 +68,17 @@ body, html {
   button:hover {
     background-color: #e5caba;
   }
+  @media (max-width: 480px) {
+    .login-container {
+      padding: 25px;
+    }
+
+    .login-container h2 {
+      font-size: 20px;
+    }
+
+    button {
+      font-size: 16px;
+      padding: 10px 20px;
+    }
+  }

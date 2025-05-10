@@ -7,28 +7,35 @@
   <link rel="stylesheet" href="{{ asset('css/keuangan-harian.css') }}">
 </head>
 <body>
+
     <header class="top-bar">
         <div class="left-section">
           <a href="{{ url('/karyawan-home') }}" class="back-button">
             <img src="{{ asset('images/Back.png') }}" alt="Back">
           </a>
-          <input type="text" placeholder="Search" class="search-bar">
-          <div class="filter-wrapper">
-            <button class="filter-btn">&#x1F5D2;</button>
-            <div class="filter-dropdown">
-              <ul>
-                <li>Waktu</li>
-                <li>Nama Permainan</li>
-              </ul>
-            </div>
-          </div>
         </div>
+        <img src="{{ asset('images/Logo.png') }}" alt="Logo" class="logo" >
         <div class="user-section">
+            <p class="tanggal">Tanggal: {{ \Carbon\Carbon::now()->format('d/m/Y') }}</p>
           <span class="username">{{ $user }}</span>
-          <span class="date">Tanggal: <a href="#">{{ $tanggal }}</a></span>
           <img src="{{ asset('images/User.png') }}" alt="User" class="user-icon">
         </div>
       </header>
+
+      <div class="search-bar">
+        <input type="text" placeholder="Search">
+      </div>
+
+      <div class="filter-wrapper">
+        <button class="filter-btn">&#x1F5D2;</button>
+        <div class="filter-dropdown">
+          <ul>
+            <li>Waktu</li>
+            <li>Nama Permainan</li>
+          </ul>
+        </div>
+      </div>
+
 
 
   <main>
@@ -64,7 +71,7 @@
             onchange="updateSelectStyle(this, {{ $item['id'] }})"
           >
             <option value="Lunas" {{ $item['status'] == 'Lunas' ? 'selected' : '' }}>Lunas</option>
-            <option value="Belum" {{ $item['status'] == 'Belum' ? 'selected' : '' }}>Belum</option>
+
           </select>
 
           </td>

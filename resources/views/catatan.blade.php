@@ -7,23 +7,30 @@
   <title>Daftar Permainan</title>
 </head>
 <body>
-  <div class="container">
-    <header class="header">
-        <div class="header-left">
-          <a href="{{ url('/karyawan-home') }}" class="back-button">
-            <img src="{{ asset('images/Back.png') }}" alt="Back">
-          </a>
-        </div>
-        <div class="header-center">
-          <input type="text" placeholder="Search nama customer..." class="search-bar"/>
-        </div>
-        <div class="header-right user-panel">
-            <img src="{{ asset('images/Logo.png') }}" alt="Logo" class="logo">
-            <p class="tanggal">Tanggal: {{ \Carbon\Carbon::now()->format('d/m/Y') }}</p>
+    <header>
+        <div class="container">
 
-            <div class="user-profile">
-              <img src="{{ asset('images/User.png') }}" alt="User" class="user-icon">
-              <span class="username">{{ Auth::guard('karyawan')->user()->name }}</span>
+          <!-- Kiri -->
+          <div class="header-left">
+            <a href="{{ url('/karyawan-home') }}" class="back-button">
+              <img src="{{ asset('images/Back.png') }}" alt="Back">
+            </a>
+            <input type="text" placeholder="Search nama customer..." class="search-bar" />
+          </div>
+
+          <!-- Tengah -->
+          <div class="header-center">
+            <img src="{{ asset('images/Logo.png') }}" alt="Logo" class="logo">
+          </div>
+
+          <!-- Kanan -->
+          <div class="header-right">
+            <div class="user-top">
+              <p class="tanggal">Tanggal: {{ \Carbon\Carbon::now()->format('d/m/Y') }}</p>
+              <div class="user-info">
+                <img src="{{ asset('images/User.png') }}" alt="User" class="user-icon" />
+                <span class="username">{{ Auth::guard('karyawan')->user()->name }}</span>
+              </div>
             </div>
 
             <div class="button-group">
@@ -32,7 +39,9 @@
             </div>
           </div>
 
+        </div>
       </header>
+
 
 
       <table>
