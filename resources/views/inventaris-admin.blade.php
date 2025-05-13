@@ -119,11 +119,7 @@
         <form action="{{ route('inventaris.tambah') }}" method="POST">
             @csrf
             <label for="kategori">Kategori:</label>
-            <select name="kategori" required>
-            <option value="skuter">Skuter</option>
-            <option value="mobil">Mobil</option>
-            <option value="motor">Motor</option>
-            <option value="styrofoam">Styrofoam</option>
+            <select name="kategori" id="kategori-select" required>
             </select>
 
             <label for="jenis">Jenis:</label>
@@ -136,6 +132,21 @@
             <input type="number" name="rusak" value="0" min="0">
 
             <button type="submit">Tambah</button>
+        </form>
+    </div>
+</div>
+
+<!-- Form Tambah Kategori -->
+<div id="addModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+
+        <form action="{{ route('kategori.tambah') }}" method="POST">
+            @csrf
+            <label for="kategori">Kategori Baru:</label>
+            <input type="text" name="kategori_barang" required placeholder="Masukkan kategori baru">
+
+            <button type="submit">Tambah Kategori</button>
         </form>
     </div>
 </div>
@@ -201,6 +212,27 @@ function decrement(button, field) {
         const rusak = parseInt(row.children[4].querySelector('.count').textContent);
         row.children[5].textContent = stok - rusak;
     }
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchKategori();
+    });
+
+    function fetchKategori() {
+        fetch('{{ route("kategori.list") }}')
+            .then(response => response.json())
+            .then(data => {
+                const kategoriSelect = document.getElementById('kategori-select');
+                kategoriSelect.innerHTML = ''; // Kosongkan dulu
+                data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.nama;
+                    option.textContent = item.nama;
+                    kategoriSelect.appendChild(option);
+                });
+            });
+    }
+    
 
 </script>
 

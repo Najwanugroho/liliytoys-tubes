@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\DetailKaryawanController;
 use App\Http\Controllers\InventarisController;
 use App\Http\Controllers\PengeluaranController;
+use App\Http\Controllers\KategoriController;
 
 Route::get('/laporan-keuangan-harian', [LaporanController::class, 'index'])->name('laporan-harian');
 Route::get('/keuangan-admin', [KeuanganController::class, 'index'])->name('keuangan-admin');
@@ -21,6 +22,9 @@ Route::post('/laporan-keuangan/tambah', [LaporanController::class, 'tambah'])->n
 
 Route::post('/catatan/update-keterangan', [CatatanController::class, 'updateKeterangan'])->name('catatan.updateKeterangan');
 Route::post('/catatan/update-permainan', [CatatanController::class, 'updatePermainan'])->name('catatan.updatePermainan');
+
+Route::post('/kategori/tambah', [KategoriController::class, 'tambah'])->name('kategori.tambah');
+Route::get('/kategori/list', [KategoriController::class, 'list'])->name('kategori.list');
 
 
 Route::post('/inventaris/tambah', [InventarisAdminController::class, 'tambah'])->name('inventaris.tambah');
