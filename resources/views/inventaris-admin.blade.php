@@ -9,7 +9,7 @@
 
 <!-- Header -->
 <header class="header">
-    <a href="{{ url('/admin-home') }}" class="back-button">
+    <a href="{{ session('previous_page', url()->previous()) }}" class="back-button">
         <img src="{{ asset('images/Back.png') }}" alt="Back">
     </a>
     <img src="{{ asset('images/Logo.png') }}" alt="Logo" class="logo">

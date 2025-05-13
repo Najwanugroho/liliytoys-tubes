@@ -17,7 +17,6 @@
         <img src="{{ asset('images/Logo.png') }}" alt="Logo" class="logo" >
         <div class="user-section">
             <p class="tanggal">Tanggal: {{ \Carbon\Carbon::now()->format('d/m/Y') }}</p>
-          <span class="username">{{ $user }}</span>
           <img src="{{ asset('images/User.png') }}" alt="User" class="user-icon">
         </div>
       </header>
@@ -51,33 +50,16 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($data as $index => $item)
-        <tr>
-          <td>{{ $index + 1 }}.</td>
-          <td>
-            <select name="nama_permainan" class="dropdown-permainan">
-              <option value="Skuter" {{ $item['nama'] == 'Skuter' ? 'selected' : '' }}>✓ Skuter</option>
-              <option value="Mobil" {{ $item['nama'] == 'Mobil' ? 'selected' : '' }}>✓ Mobil</option>
-              <option value="Motor" {{ $item['nama'] == 'Motor' ? 'selected' : '' }}>✓ Motor</option>
-              <option value="Styrofoam" {{ $item['nama'] == 'Styrofoam' ? 'selected' : '' }}>✓ Styrofoam</option>
-            </select>
-          </td>
-          <td>{{ $item['waktu'] }}</td>
-          <td>{{ $item['harga'] }}</td>
-          <td>
-            <select
-            name="status_pembayaran"
-            class="dropdown-status {{ strtolower($item['status']) }}"
-            onchange="updateSelectStyle(this, {{ $item['id'] }})"
-          >
-            <option value="Lunas" {{ $item['status'] == 'Lunas' ? 'selected' : '' }}>Lunas</option>
-
-          </select>
-
-          </td>
-          <td></td>
-        </tr>
-        @endforeach
+      @foreach($data as $index => $item)
+            <tr>
+                <td>{{ $index + 1 }}</td>
+                <td>{{ $item->nama_permainan }}</td>
+                <td>{{ $item->waktu }}</td>
+                <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
+                <td>{{ $item->status_pembayaran }}</td>
+                <td>{{ $item->keterangan }}</td>
+            </tr>
+            @endforeach
       </tbody>
     </table>
 

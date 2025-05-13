@@ -116,4 +116,41 @@ class CatatanController extends Controller
 
         return response()->json(['success' => false], 404);
     }
+
+    public function updateKeterangan(Request $request)
+    {
+        $validated = $request->validate([
+            'id' => 'required|exists:catatans,id',
+            'keterangan' => 'nullable|string|max:255',
+        ]);
+
+        $catatan = Catatan::find($validated['id']);
+        $catatan->keterangan = $validated['keterangan'];
+        $catatan->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    // Controller untuk update permainan
+    public function updatePermainan(Request $request)
+    {
+        $validatedData = $request->validate([
+            'id' => 'required|integer',
+            'nama_permainan' => 'required|string',
+            'harga' => 'required|integer',
+        ]);
+
+        $catatan = Catatan::find($validatedData['id']);
+        if ($catatan) {
+            $catatan->nama = $validatedData['nama_permainan'];
+            $catatan->harga = $validatedData['harga'];
+            $catatan->save();
+
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Catatan tidak ditemukan']);
+        }
+    }
+
+
 }

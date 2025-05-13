@@ -1,26 +1,46 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Laporan;
+
 
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
 {
     public function index()
-{
-    $data = [
-        ['id' => 1, 'nama' => 'Skuter', 'waktu' => '08.00 - 08.20', 'harga' => '10.000', 'status' => 'Lunas'],
-        ['id' => 2, 'nama' => 'Melukis', 'waktu' => '08.00', 'harga' => '15.000', 'status' => 'Lunas'],
-        ['id' => 3, 'nama' => 'Mobil', 'waktu' => '08.00 - 08.15', 'harga' => '15.000', 'status' => 'Lunas'],
-        ['id' => 4, 'nama' => 'Motor', 'waktu' => '08.00 - 08.15', 'harga' => '15.000', 'status' => 'Lunas'],
-    ];
+    {
+        // Ambil data laporan harian yang diperlukan
+        $data = Laporan::whereDate('tanggal', now()->toDateString())
+        ->get();
 
-    return view('laporan-keuangan-harian', [
-        'user' => 'User123',
-        'tanggal' => '05/05/2025',
-        'data' => $data,
-        'pendapatan' => 4000000
-    ]);
-}
+        $pendapatan = Laporan::whereDate('tanggal', now()->toDateString())
+        ->sum('harga');
+
+        // Kirimkan data ke view
+        return view('laporan-keuangan-harian', compact('data', 'pendapatan'));
+    }
+
+    public function tambah(Request $request)
+    {
+        try {
+            $laporan = $request->input('laporan');
+            
+            // Proses data laporan, misalnya menyimpannya ke dalam database
+            foreach ($laporan as $item) {
+                // Menyimpan laporan ke database
+                Laporan::create([
+                    'nama_permainan' => $item['nama_permainan'],
+                    'harga' => preg_replace('/[^\d]/', '', $item['harga']),
+                    'status' => $item['status'],
+                    'tanggal' => now(),
+                ]);
+            }
+    
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        }
+    }
 
 }

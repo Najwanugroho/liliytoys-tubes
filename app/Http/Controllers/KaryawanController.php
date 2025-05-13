@@ -38,6 +38,7 @@ class KaryawanController extends Controller
         $karyawan = Auth::guard('karyawan')->user();
 
         $data = Catatan::all();
+        
         if (!$karyawan) {
             return redirect()->route('karyawan.login')->with('error', 'Harap login terlebih dahulu.');
         }

@@ -15,7 +15,7 @@
             <a href="{{ url('/karyawan-home') }}" class="back-button">
               <img src="{{ asset('images/Back.png') }}" alt="Back">
             </a>
-            <input type="text" placeholder="Search nama customer..." class="search-bar" />
+            <input type="text" placeholder="Search nama permainan/ket...." class="search-bar" />
           </div>
 
           <!-- Tengah -->
@@ -109,7 +109,10 @@
               </select>
             </td>
 
-            <td></td>
+            <td class="editable" data-id="{{ $item['id'] }}">
+              <span class="keterangan-text">{{ $item['keterangan'] }}</span>
+              <input type="text" class="keterangan-input" value="{{ $item['keterangan'] }}" style="display:none" />
+            </td>
           </tr>
           @endforeach
         </tbody>
@@ -146,7 +149,7 @@
         </select>
 
         <label for="keterangan">Keterangan:</label>
-        <input type="text" name="keterangan" placeholder="Opsional...">
+        <input type="text" name="keterangan" placeholder="Opsional..." value="{{ old('keterangan') }}">
 
         <button type="submit">Tambah</button>
       </form>
@@ -380,7 +383,7 @@ document.querySelector('.button-group button').addEventListener('click', functio
         });
         alert('Data berhasil dipindahkan ke laporan keuangan.');
       } else {
-        alert('Gagal memindahkan data ke laporan keuangan.');
+        alert('Gagal memindahkan data ke laporan keuangan: ' + data.message);
       }
     })
     .catch(error => {
@@ -390,6 +393,127 @@ document.querySelector('.button-group button').addEventListener('click', functio
   } else {
     alert('Pilih catatan terlebih dahulu.');
   }
+});
+
+
+document.querySelector('.search-bar').addEventListener('input', function () {
+  const searchTerm = this.value.toLowerCase(); // Ambil kata kunci pencarian, dan ubah jadi huruf kecil
+  const rows = document.querySelectorAll('#catatanTbody tr'); // Ambil semua baris tabel
+
+  rows.forEach(row => {
+    const namaPermainan = row.querySelector('td:nth-child(3)').textContent.toLowerCase(); // Nama Permainan
+    const keterangan = row.querySelector('td:nth-child(7)').textContent.toLowerCase(); // Keterangan
+    
+    // Cek jika salah satu kolom mengandung kata kunci pencarian
+    if (namaPermainan.includes(searchTerm) || keterangan.includes(searchTerm)) {
+      row.style.display = ''; // Tampilkan baris
+    } else {
+      row.style.display = 'none'; // Sembunyikan baris
+    }
+  });
+});
+
+
+// Tambahkan event listener pada setiap dropdown "Nama Permainan" di tabel
+document.querySelectorAll('.dropdown-permainan').forEach(select => {
+    select.addEventListener('change', function() {
+        const row = this.closest('tr');
+        const selectedPermainan = this.value;
+        const hargaCell = row.querySelector('td:nth-child(5)');
+        const id = row.querySelector('td input[type="checkbox"]').value; // Ambil ID berdasarkan checkbox
+        let harga;
+
+        // Tentukan harga berdasarkan permainan yang dipilih
+        if (selectedPermainan === 'Skuter') {
+            harga = 10000;
+        } else {
+            harga = 15000;
+        }
+
+        // Update harga di kolom
+        hargaCell.textContent = harga.toLocaleString();
+
+        // Kirim perubahan nama permainan dan harga ke server
+        fetch('{{ route('catatan.updatePermainan') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                id: id,
+                nama_permainan: selectedPermainan,
+                harga: harga
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Data permainan berhasil diperbarui!');
+            } else {
+                alert('Gagal memperbarui data permainan.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+});
+
+
+// Panggil updateHarga() pada modal saat dropdown permainan diubah
+document.getElementById('namaPermainanSelect').addEventListener('change', updateHarga);
+
+
+
+
+// Menangani double click pada kolom keterangan untuk mengeditnya
+document.querySelectorAll('.editable').forEach(function(cell) {
+  cell.addEventListener('dblclick', function() {
+    const input = cell.querySelector('.keterangan-input');
+    const text = cell.querySelector('.keterangan-text');
+    
+    // Sembunyikan teks dan tampilkan input
+    text.style.display = 'none';
+    input.style.display = 'block';
+    input.focus();
+  });
+});
+
+// Menangani event Enter untuk menyimpan perubahan
+document.querySelectorAll('.keterangan-input').forEach(function(input) {
+  input.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      const newKeterangan = input.value;
+      const rowId = input.closest('.editable').dataset.id; // Ambil id dari data-id
+
+      // Kirim data yang sudah diedit ke server (gunakan fetch)
+      fetch('{{ route('catatan.updateKeterangan') }}', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({
+          id: rowId,
+          keterangan: newKeterangan
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Berhasil update, tampilkan kembali teks keterangan dan sembunyikan input
+          input.style.display = 'none';
+          input.previousElementSibling.style.display = 'block';
+          input.previousElementSibling.textContent = newKeterangan;
+        } else {
+          alert('Gagal menyimpan perubahan.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan.');
+      });
+    }
+  });
 });
 
 

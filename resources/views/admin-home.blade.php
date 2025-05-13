@@ -45,7 +45,7 @@
         <section class="employee-section">
             <h2>Karyawan:</h2>
             <div class="search-bar">
-                <input type="text" placeholder="Search">
+                <input type="text" id="searchInput" placeholder="Search" onkeyup="searchEmployee()">
             </div>
             <a href="{{ url('/register-karyawan') }}">
                 <button class="add-employee">+ Add Employee</button>
@@ -91,6 +91,22 @@
                 dropdown.classList.add('hidden');
             }
         });
+
+        function searchEmployee() {
+        // Ambil input dan daftar karyawan
+        let input = document.getElementById('searchInput').value.toLowerCase();
+        let employeeList = document.querySelectorAll('.employee-list li');
+        
+        // Loop untuk mengecek setiap item dalam daftar karyawan
+        employeeList.forEach(function(item) {
+            let employeeName = item.textContent || item.innerText;
+            if (employeeName.toLowerCase().indexOf(input) > -1) {
+                item.style.display = ""; // tampilkan jika cocok
+            } else {
+                item.style.display = "none"; // sembunyikan jika tidak cocok
+            }
+        });
+    }
     </script>
 </body>
 </html>
